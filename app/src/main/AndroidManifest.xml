@@ -24,6 +24,18 @@
             android:name=".MesaInterior"
             android:label="Interior" >
         </activity>
+        <activity
+            android:name=".MesaTerraza"
+            android:label="Terraza" >
+        </activity>
+        <activity
+            android:name=".Comandas"
+            android:label="@string/title_activity_comandas" >
+        </activity>
+        <activity
+            android:name=".ContenedorTab"
+            android:label="container" >
+        </activity>
     </application>
 
 </manifest>

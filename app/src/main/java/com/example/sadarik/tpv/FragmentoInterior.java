@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+
+
+    /*POR AHORA SIN UTILIDAD*/
 public class FragmentoInterior extends Fragment {
 
     @Override

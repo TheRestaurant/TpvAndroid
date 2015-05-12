@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -104,7 +103,7 @@ public class Principal extends FragmentActivity {
                 Log.v("jsonresp", objeto.toString());
                 String respuesta = objeto.getString("r");
                 if(respuesta.equals("1")){
-                    Intent login = new Intent(getBaseContext(), MesaInterior.class); //Cambiar a mesas cuando logre meterlo en tab
+                    Intent login = new Intent(getBaseContext(), ContenedorTab.class); //Cambiar a mesas cuando logre meterlo en tab
                     startActivity(login);
                 }else{
                     Toast.makeText(getBaseContext(), "Usuario "+usuario.getText()+password.getText(), Toast.LENGTH_SHORT).show();

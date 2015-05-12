@@ -2,6 +2,7 @@ package com.example.sadarik.tpv;
 
 import java.util.ArrayList;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,6 +42,8 @@ public class MesaInterior extends Activity implements OnClickListener{
         @Override
         public void onClick(View v) {
             Button botonSeleccionado = (Button)v;
+            Intent comanda = new Intent(this, Comandas.class);
+            startActivity(comanda);
             Toast.makeText(this, botonSeleccionado.getText() + " Presionado", Toast.LENGTH_SHORT).show();
         }
     }
