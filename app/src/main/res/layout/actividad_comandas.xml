@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:visibility="visible">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:visibility="gone"
+        android:id="@+id/layoutCuenta"
+        android:layout_weight="1.4">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/scrollView"
-            android:layout_margin="15dp">
+            android:layout_margin="15dp"
+            android:visibility="visible">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
+                android:text="Cuenta"
                 android:id="@+id/textView" />
         </ScrollView>
 
@@ -32,28 +36,59 @@
         android:layout_weight="1">
 
         <GridView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/gridView2"
-            android:numColumns="3"
-            android:choiceMode="singleChoice"
+            android:numColumns="5"
+            android:choiceMode="multipleChoice"
             android:layout_margin="15dp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:layout_margin="15dp">
+        android:layout_margin="15dp"
+        android:visibility="gone"
+        android:id="@+id/layoutProductos">
+
 
         <GridView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/gridView3"
             android:choiceMode="multipleChoice"
-            android:numColumns="5" />
+            android:numColumns="5"
+            android:layout_margin="15dp"
+            android:visibility="visible" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutBotones"
+        android:visibility="gone">
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/btCancel"
+            android:background="@drawable/cancel"
+            android:layout_marginLeft="410dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/btComanda"
+            android:background="@drawable/comandas"
+            android:layout_marginBottom="10dp"
+            android:visibility="visible" />
+    </LinearLayout>
+
 </LinearLayout>

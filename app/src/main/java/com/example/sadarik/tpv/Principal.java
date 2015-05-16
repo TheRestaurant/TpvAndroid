@@ -80,7 +80,6 @@ public class Principal extends FragmentActivity {
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();
-
         }
 
         @Override
@@ -103,7 +102,7 @@ public class Principal extends FragmentActivity {
                 Log.v("jsonresp", objeto.toString());
                 String respuesta = objeto.getString("r");
                 if(respuesta.equals("1")){
-                    Intent login = new Intent(getBaseContext(), ContenedorTab.class); //Cambiar a mesas cuando logre meterlo en tab
+                    Intent login = new Intent(getBaseContext(), ContenedorTab.class);
                     startActivity(login);
                 }else{
                     Toast.makeText(getBaseContext(), "Usuario "+usuario.getText()+password.getText(), Toast.LENGTH_SHORT).show();

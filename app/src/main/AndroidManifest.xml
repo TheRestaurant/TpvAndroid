@@ -17,10 +17,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Mesas"
-            android:label="@string/title_activity_mesas" >
-        </activity>
-        <activity
             android:name=".MesaInterior"
             android:label="Interior" >
         </activity>
@@ -32,10 +28,10 @@
             android:name=".Comandas"
             android:label="@string/title_activity_comandas" >
         </activity>
-        <activity
-            android:name=".ContenedorTab"
-            android:label="container" >
-        </activity>
-    </application>
+          <activity
+             android:name=".ContenedorTab"
+             android:label="contenedor" >
+         </activity>
+     </application>
 
-</manifest>
+ </manifest>
