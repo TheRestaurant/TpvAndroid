@@ -35,6 +35,8 @@ public class Comandas extends ActionBarActivity {
     private AdaptadorGridView adaptadorGrid;
     private int mesaActual;
     private JSONArray jArray;
+    private int productos = R.array.familias;;
+    private String[] nombres;
 
 
     @Override
@@ -43,7 +45,7 @@ public class Comandas extends ActionBarActivity {
         setContentView(R.layout.actividad_comandas);
         Intent i = getIntent();
         mesaActual = i.getIntExtra("mesa",-1);
-        Log.v("mesa",mesaActual+"");
+        Log.v("mesa", mesaActual + "");
         lDetalle = (LinearLayout)findViewById(R.id.layoutProductos);
         lCuenta = (LinearLayout)findViewById(R.id.layoutCuenta);
         lBotones = (LinearLayout)findViewById(R.id.layoutBotones);
@@ -51,21 +53,81 @@ public class Comandas extends ActionBarActivity {
         gridView2 = (GridView) findViewById(R.id.gridView3);
 
         /*Gridview para las familias*/
-        adaptadorGrid = new AdaptadorGridView(this, R.layout.item_gridlayout, getFamilias());
+        adaptadorGrid = new AdaptadorGridView(this, R.layout.item_gridlayout, getFamilias(productos, familias));
         gridView.setAdapter(adaptadorGrid);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 lDetalle.setVisibility(View.VISIBLE);
+                switch (position) {
 
-                Toast.makeText(Comandas.this, "" + position, Toast.LENGTH_SHORT).show();
+                    case 0:
+                        productos = R.array.cafes;
+                        nombres = cafes;
+                        rellenarGrid();
+                        break;
+                    case 1:
+                        productos = R.array.familias;
+                        nombres=familias;
+                        rellenarGrid();
+                        break;
+                    case 2:
+                        productos = R.array.refrescos;
+                        nombres = refrescos;
+                        rellenarGrid();
+                        break;
+                    case 3:
+                        Toast.makeText(Comandas.this, "cervezas", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 4:
+                        Toast.makeText(Comandas.this, "vinos", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 5:
+                        Toast.makeText(Comandas.this, "licores", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 6:
+                        Toast.makeText(Comandas.this, "whisky", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 7:
+                        Toast.makeText(Comandas.this, "cocktails", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 8:
+                        Toast.makeText(Comandas.this, "tapas", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 9:
+                        Toast.makeText(Comandas.this, "comida rapida", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 10:
+                        Toast.makeText(Comandas.this, "bocadillos", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 11:
+                        Toast.makeText(Comandas.this, "ensaladas", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 12:
+                        Toast.makeText(Comandas.this, "carnes", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 13:
+                        Toast.makeText(Comandas.this, "pescados", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 14:
+                        Toast.makeText(Comandas.this, "especiales", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 15:
+                        Toast.makeText(Comandas.this, "varios", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 16:
+                        Toast.makeText(Comandas.this, "helados", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    default:
+                        break;
+                }
+
             }
         });
 
         /*Gridview para los productos*/
-        adaptadorGrid = new AdaptadorGridView(this, R.layout.item_gridlayout, getProductos());
-        gridView2.setAdapter(adaptadorGrid);
 
         gridView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
@@ -78,22 +140,18 @@ public class Comandas extends ActionBarActivity {
 
     }
 
-    private ArrayList<ItemImagen> getProductos() {
-        final ArrayList<ItemImagen> imagenes = new ArrayList<>();
-        TypedArray imgs = getResources().obtainTypedArray(R.array.refrescos);
-        for (int i = 0; i < imgs.length(); i++) {
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(i, -1));
-            imagenes.add(new ItemImagen(bitmap,  refrescos[i]));
-        }
-        return imagenes;
+    public void rellenarGrid(){
+        adaptadorGrid = new AdaptadorGridView(Comandas.this, R.layout.item_gridlayout, getFamilias(productos, nombres));
+        gridView2.setAdapter(adaptadorGrid);
     }
 
-    private ArrayList<ItemImagen> getFamilias() {
+
+    private ArrayList<ItemImagen> getFamilias(int productos, String[] nombres) {
         final ArrayList<ItemImagen> imagenes = new ArrayList<>();
-        TypedArray imgs = getResources().obtainTypedArray(R.array.familias);
+        TypedArray imgs = getResources().obtainTypedArray(productos);
         for (int i = 0; i < imgs.length(); i++) {
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(i, -1));
-            imagenes.add(new ItemImagen(bitmap,  familias[i]));
+            imagenes.add(new ItemImagen(bitmap,  nombres[i]));
         }
         return imagenes;
     }
@@ -110,6 +168,17 @@ public class Comandas extends ActionBarActivity {
             "Varios", "Helados",
     };
 
+    private String[] cafes = {
+            "Solo", "Solo Descafeinado","Cortado",
+            "Cortado Descafeinado","Con Leche", "Con Leche Descafeinado",
+            "Leche", "Bombon", "Bombon Descafeinado",
+            "Carajillo", "Carajillo Descafeinado", "Te",
+            "Te con Leche", "Menta Poleo", "Manzanilla",
+            "Tila", "Cola Cao","Belmonte",
+            "Tewhis", "Americano", "Americano Descafeinado",
+            "Capuchino",
+    };
+
     private String[] refrescos = {
             "Coca Cola", "Light",
             "Zero", "Naranja",
@@ -121,7 +190,7 @@ public class Comandas extends ActionBarActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String url="http://192.168.1.134:8080/ServletRestaurante/peticiones?target="+params[0];
+            String url="http://192.168.1.7:8080/ServletRestaurante/peticiones?target="+params[0];
             String r = mandarPedido(url);
             return r;
         }

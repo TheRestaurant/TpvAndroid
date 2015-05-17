@@ -24,8 +24,33 @@
         <item>@drawable/fespeciales</item>
         <item>@drawable/fvarios</item>
         <item>@drawable/fhelados</item>
-    </string-array>    
-    
+    </string-array>
+
+    <string-array name="cafes">
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+        <item>@drawable/nofoto</item>
+    </string-array>
+
     <string-array name="refrescos">
         <item>@drawable/cocacola</item>
         <item>@drawable/cocacolalight</item>
