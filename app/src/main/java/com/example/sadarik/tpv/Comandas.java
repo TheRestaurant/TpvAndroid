@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -37,8 +38,9 @@ public class Comandas extends ActionBarActivity {
     private JSONArray jArray;
     private int productos = R.array.familias;;
     private String[] nombres;
-
-
+    private TextView tvCuenta;
+    private ArrayList<Familia> fm;
+    private ArrayList<Producto> pr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,22 @@ public class Comandas extends ActionBarActivity {
         lBotones = (LinearLayout)findViewById(R.id.layoutBotones);
         gridView = (GridView) findViewById(R.id.gridView2);
         gridView2 = (GridView) findViewById(R.id.gridView3);
+        tvCuenta = (TextView)findViewById(R.id.tvCuenta);
+        fm = Principal.familias;
+        pr = Principal.productos;
+
+       final String[] familias = new String[fm.size()];
+        for (int j = 0; j < fm.size(); j++) {
+            familias[j] = fm.get(j).getNombreFamilia();
+
+        }
+
+        final String[] productosBucle = new String[pr.size()];
+        for (int j = 0; j < pr.size(); j++) {
+            productosBucle[j] = pr.get(j).getNombreProducto();
+        }
+        Log.v("productos", ""+productosBucle.length);
+
 
         /*Gridview para las familias*/
         adaptadorGrid = new AdaptadorGridView(this, R.layout.item_gridlayout, getFamilias(productos, familias));
@@ -69,7 +87,7 @@ public class Comandas extends ActionBarActivity {
                         break;
                     case 1:
                         productos = R.array.familias;
-                        nombres=familias;
+                        nombres = familias;
                         rellenarGrid();
                         break;
                     case 2:
@@ -81,6 +99,7 @@ public class Comandas extends ActionBarActivity {
                         Toast.makeText(Comandas.this, "cervezas", Toast.LENGTH_SHORT).show();
                         break;
                     case 4:
+
                         Toast.makeText(Comandas.this, "vinos", Toast.LENGTH_SHORT).show();
                         break;
                     case 5:
@@ -159,14 +178,14 @@ public class Comandas extends ActionBarActivity {
 
     /*Array*/
 
-    private String[] familias = {
+ /*   private String[] familias = {
             "Cafes", "Batidos","Refrescos",
             "Cervezas","Vinos", "Licores",
             "Whisky", "Cocktails", "Tapas",
             "Comida rapida", "Bocadillos", "Ensaladas",
             "Carnes", "Pescados", "Especiales",
             "Varios", "Helados",
-    };
+    }; */
 
     private String[] cafes = {
             "Solo", "Solo Descafeinado","Cortado",
