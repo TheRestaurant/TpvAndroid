@@ -17,7 +17,7 @@
             android:id="@+id/tvProducto"
             android:layout_weight="0.5"
             android:textStyle="bold"
-            android:textSize="20dp" />
+            android:textSize="15sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,7 +27,8 @@
             android:id="@+id/tvCantidad"
             android:layout_weight="0.5"
             android:gravity="right"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -44,11 +45,11 @@
             android:id="@+id/tvPrecio"
             android:layout_weight="0.5"
             android:textStyle="bold"
-            android:textSize="20dp" />
+            android:textSize="15sp" />
 
         <ImageButton
-            android:layout_width="36dp"
-            android:layout_height="34dp"
+            android:layout_width="26dp"
+            android:layout_height="24dp"
             android:id="@+id/btCancelPedido"
             android:src="@drawable/cancel" />
     </LinearLayout>

@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -32,7 +34,7 @@ import java.util.ArrayList;
 
 public class Comandas extends ActionBarActivity {
 
-    private LinearLayout lDetalle, lCuenta, lBotones;
+    private LinearLayout lFamilias, lDetalle, lCuenta, lBotones;
     private GridView gridView, gridView2;
     private ListView lvPedidos;
     private AdaptadorGridView adaptadorGrid;
@@ -47,20 +49,25 @@ public class Comandas extends ActionBarActivity {
     private ArrayList<Producto> pr;
     private ArrayList<Producto> auxiliar;
     private ArrayList<Pedido> listaPedidos;
+    private int contador;
+    private Button btOcultar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actividad_comandas);
+         contador=0;
         Intent i = getIntent();
         mesaActual = i.getIntExtra("mesa", -1);
         Log.v("mesa", mesaActual + "");
         lDetalle = (LinearLayout) findViewById(R.id.layoutProductos);
+        lFamilias = (LinearLayout)findViewById(R.id.lFamilias);
         lCuenta = (LinearLayout) findViewById(R.id.layoutCuenta);
         lBotones = (LinearLayout) findViewById(R.id.layoutBotones);
         gridView = (GridView) findViewById(R.id.gridView2);
         gridView2 = (GridView) findViewById(R.id.gridView3);
         lvPedidos = (ListView) findViewById(R.id.lvPedidos);
+        btOcultar = (Button)findViewById(R.id.btPedido);
         fm = Principal.familias;
         pr = Principal.productos;
         listaPedidos = new ArrayList<>();
@@ -257,7 +264,7 @@ public class Comandas extends ActionBarActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String url = "http://192.168.5.24:8080/ServletRestaurante/peticiones?target=" + params[0];
+            String url = "http://192.168.1.7:8080/ServletRestaurante/peticiones?target=" + params[0];
             String r = mandarPedido(url);
             return r;
         }
@@ -335,5 +342,22 @@ public class Comandas extends ActionBarActivity {
         pide.execute("pedido");
     }
 
+    public void esImpar() {
+        contador++;
+        if (contador%2!=0){
+            lFamilias.setVisibility(View.GONE);
+            btOcultar.setBackgroundDrawable(getResources().getDrawable(R.drawable.comida));
+        }
+
+        else{
+            lFamilias.setVisibility(View.VISIBLE);
+            btOcultar.setBackgroundDrawable(getResources().getDrawable(R.drawable.pedido));
+        }
+
+    }
+
+    public void mostrar(View view){
+        esImpar();
+    }
 }
 
