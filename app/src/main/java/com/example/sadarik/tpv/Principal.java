@@ -2,6 +2,9 @@ package com.example.sadarik.tpv;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
@@ -32,7 +35,7 @@ public class Principal extends FragmentActivity {
 
     private EditText usuario, password;
     private ProgressDialog pDialog;
-    private String baseUrl="http://192.168.1.7:8080/ServletRestaurante/peticiones?target=";
+    private String baseUrl="http://192.168.5.24:8080/ServletRestaurante/peticiones?target=";
     public static ArrayList<Mesa> mesas;
     public static ArrayList<Familia> familias;
     public static ArrayList<Producto> productos;
@@ -89,7 +92,7 @@ public class Principal extends FragmentActivity {
 
         @Override
         protected String doInBackground(String[]... params) {
-            SystemClock.sleep(1950);
+            //SystemClock.sleep(1950);
             String r="";
             for(String[] p:params){
                 r=pedirInfo(p[0],p[1]);
@@ -167,8 +170,8 @@ public class Principal extends FragmentActivity {
             String [] r = new String [params.length];
             int contador =0;
             for(String s:params){
-                SystemClock.sleep(500);
-                r[contador] = pedirDatos("http://192.168.1.7:8080/ServletRestaurante/peticiones?target="+s);
+                //SystemClock.sleep(500);
+                r[contador] = pedirDatos("http://192.168.5.24:8080/ServletRestaurante/peticiones?target="+s);
                 contador++;
             }
             return r;
@@ -195,37 +198,60 @@ public class Principal extends FragmentActivity {
                     JSONObject objeto = array.getJSONObject(i);
                     Mesa m = new Mesa(objeto.getInt("idMesa"),objeto.getString("nombreMesa"),objeto.getString("nombreZona"));
                     mesas.add(m);
-                    Log.v("mesa", m.toString());
                 }
                 Log.v("total mesas",mesas.size()+"");
             } catch (JSONException e) {
 
             }
 
+            TypedArray imgs = getResources().obtainTypedArray(R.array.familias);
+
             JSONTokener tokenfamilias = new JSONTokener(strings[1].substring(4, strings[1].length()));
             familias = new ArrayList<>();
             try {
                 JSONArray array = new JSONArray(tokenfamilias);
+                String imagen = null;
                 for (int i = 0; i < array.length(); i++){
                     JSONObject objeto = array.getJSONObject(i);
-                    Familia f = new Familia(objeto.getInt("idFamilia"),objeto.getString("nombreFamilia"));
+                    for (int j = 0; j < imgs.length(); j++) {
+                       if(imgs.getString(j).contains(objeto.getString("nombreFamilia").toLowerCase())){
+                           imagen=imgs.getString(j);
+                           break;
+                        } else{
+                           imagen = "res/drawable/nofoto";
+                       }
+                    }
+                    String name = imagen.replace(".png","");
+                    name = name.substring(name.lastIndexOf("/")+1,name.length());
+                    Familia f = new Familia(objeto.getInt("idFamilia"),objeto.getString("nombreFamilia"),name);
                     familias.add(f);
-                    Log.v("familia", f.toString());
                 }
-                Log.v("total familia",familias.size()+"");
+                Log.v("total familia", familias.size()+"");
             } catch (JSONException e) {
 
             }
 
+            imgs = getResources().obtainTypedArray(R.array.refrescos);
+
             JSONTokener tokenproductos = new JSONTokener(strings[2].substring(4, strings[2].length()));
             productos = new ArrayList<>();
             try {
+                String imagen = null;
                 JSONArray array = new JSONArray(tokenproductos);
                 for (int i = 0; i < array.length(); i++){
                     JSONObject objeto = array.getJSONObject(i);
-                    Producto p = new Producto(objeto.getInt("idProducto"),objeto.getString("nombreProducto"),objeto.getDouble("precioProducto"),objeto.getInt("Familias_idFamilias"));
+                    for (int j = 0; j < imgs.length(); j++) {
+                        if(imgs.getString(j).contains(objeto.getString("nombreProducto").replaceAll(" ", "").toLowerCase())){
+                            imagen=imgs.getString(j);
+                            break;
+                        } else{
+                            imagen = "res/drawable/nofoto";
+                        }
+                    }
+                    String name = imagen.replace(".png","");
+                    name = name.substring(name.lastIndexOf("/")+1,name.length());
+                    Producto p = new Producto(objeto.getInt("idProducto"),objeto.getString("nombreProducto"),objeto.getDouble("precioProducto"),objeto.getInt("Familias_idFamilias"),name);
                     productos.add(p);
-                    Log.v("familia", p.toString());
                 }
                 Log.v("total productos",productos.size()+"");
             } catch (JSONException e) {

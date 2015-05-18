@@ -11,15 +11,17 @@ public class Producto implements Serializable {
     private String nombreProducto;
     private Double precio;
     private int idFamilia;
+    private String imagen;
 
     public Producto() {
     }
 
-    public Producto(int idProducto, String nombreProducto, Double precio, int idFamilia) {
+    public Producto(int idProducto, String nombreProducto, Double precio, int idFamilia, String imagen) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.precio = precio;
         this.idFamilia = idFamilia;
+        this.imagen = imagen;
     }
 
     public int getIdProducto() {
@@ -54,6 +56,14 @@ public class Producto implements Serializable {
         this.idFamilia = idFamilia;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     @Override
     public String toString() {
         return "Producto{" +
@@ -61,6 +71,7 @@ public class Producto implements Serializable {
                 ", nombreProducto='" + nombreProducto + '\'' +
                 ", precio=" + precio +
                 ", idFamilia=" + idFamilia +
+                ", imagen='" + imagen + '\'' +
                 '}';
     }
 }

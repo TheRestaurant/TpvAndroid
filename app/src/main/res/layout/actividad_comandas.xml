@@ -8,25 +8,16 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
         android:id="@+id/layoutCuenta"
-        android:layout_weight="1.4">
+        android:layout_weight="1.4"
+        android:visibility="gone">
 
-        <ScrollView
+        <ListView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/scrollView"
-            android:layout_margin="15dp"
-            android:visibility="visible">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Cuenta"
-                android:id="@+id/tvCuenta" />
-        </ScrollView>
-
+            android:layout_height="wrap_content"
+            android:id="@+id/lvPedidos"
+            android:transcriptMode="alwaysScroll"
+            android:stackFromBottom="true"/>
     </LinearLayout>
 
     <LinearLayout
@@ -41,7 +32,7 @@
             android:id="@+id/gridView2"
             android:numColumns="5"
             android:choiceMode="multipleChoice"
-            android:layout_margin="15dp" />
+            android:layout_margin="7dp" />
 
     </LinearLayout>
 
@@ -50,7 +41,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:visibility="gone"
         android:id="@+id/layoutProductos">
 
@@ -61,7 +52,7 @@
             android:id="@+id/gridView3"
             android:choiceMode="multipleChoice"
             android:numColumns="5"
-            android:layout_margin="15dp"
+            android:layout_margin="7dp"
             android:visibility="visible" />
 
     </LinearLayout>
@@ -88,7 +79,8 @@
             android:id="@+id/btComanda"
             android:background="@drawable/comandas"
             android:layout_marginBottom="10dp"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:onClick="mandarPedido" />
     </LinearLayout>
 
 </LinearLayout>

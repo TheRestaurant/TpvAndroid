@@ -7,13 +7,15 @@ public class Familia implements Serializable {
 
     private int idFamilia;
     private String nombreFamilia;
+    private String imagen;
 
     public Familia() {
     }
 
-    public Familia(int idFamilia, String nombreFamilia) {
+    public Familia(int idFamilia, String nombreFamilia, String imagen) {
         this.idFamilia = idFamilia;
         this.nombreFamilia = nombreFamilia;
+        this.imagen = imagen;
     }
 
     public int getIdFamilia() {
@@ -32,11 +34,20 @@ public class Familia implements Serializable {
         this.nombreFamilia = nombreFamilia;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     @Override
     public String toString() {
         return "Familia{" +
                 "idFamilia=" + idFamilia +
                 ", nombreFamilia='" + nombreFamilia + '\'' +
+                ", imagen='" + imagen + '\'' +
                 '}';
     }
 }

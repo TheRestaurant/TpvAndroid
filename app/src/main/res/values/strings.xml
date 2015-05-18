@@ -7,23 +7,23 @@
     <string name="title_activity_comandas">Comandas</string>
 
     <string-array name="familias">
-        <item>@drawable/fcafes</item>
-        <item>@drawable/fbatidos</item>
-        <item>@drawable/frefrescos</item>
-        <item>@drawable/fcervezas</item>
-        <item>@drawable/fvinos</item>
-        <item>@drawable/flicores</item>
-        <item>@drawable/fwhisky</item>
-        <item>@drawable/fcocktails</item>
-        <item>@drawable/ftapas</item>
+        <item>@drawable/fcafeseinfusiones</item> --
+        <item>@drawable/fbatidos</item> --
+        <item>@drawable/frefrescos</item> --
+        <item>@drawable/fcervezas</item> --
+        <item>@drawable/fvinos</item> --
+        <item>@drawable/flicores</item> --
+        <item>@drawable/fbebidas</item>
+        <item>@drawable/fcocktails</item> --
+        <item>@drawable/ftapas</item> --
         <item>@drawable/frapida</item>
-        <item>@drawable/fbocadillos</item>
-        <item>@drawable/fensalada</item>
-        <item>@drawable/fcarnes</item>
-        <item>@drawable/fpescados</item>
-        <item>@drawable/fespeciales</item>
-        <item>@drawable/fvarios</item>
-        <item>@drawable/fhelados</item>
+        <item>@drawable/fbocadillos</item> --
+        <item>@drawable/fensaladas</item> --
+        <item>@drawable/fcarnes</item> --
+        <item>@drawable/fpescados</item> --
+        <item>@drawable/fespeciales</item> --
+        <item>@drawable/fvarios</item> --
+        <item>@drawable/fhelados</item> --
     </string-array>
 
     <string-array name="cafes">

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,30 +34,55 @@ public class Comandas extends ActionBarActivity {
 
     private LinearLayout lDetalle, lCuenta, lBotones;
     private GridView gridView, gridView2;
+    private ListView lvPedidos;
     private AdaptadorGridView adaptadorGrid;
+    private AdaptadorFamilias adaptadorFamilias;
+    private AdaptadorProductos adaptadorProductos;
+    private AdaptadorPedido adaptadorPedido;
     private int mesaActual;
     private JSONArray jArray;
-    private int productos = R.array.familias;;
+    private int productos = R.array.familias;
     private String[] nombres;
-    private TextView tvCuenta;
     private ArrayList<Familia> fm;
     private ArrayList<Producto> pr;
+    private ArrayList<Producto> auxiliar;
+    private ArrayList<Pedido> listaPedidos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actividad_comandas);
         Intent i = getIntent();
-        mesaActual = i.getIntExtra("mesa",-1);
+        mesaActual = i.getIntExtra("mesa", -1);
         Log.v("mesa", mesaActual + "");
-        lDetalle = (LinearLayout)findViewById(R.id.layoutProductos);
-        lCuenta = (LinearLayout)findViewById(R.id.layoutCuenta);
-        lBotones = (LinearLayout)findViewById(R.id.layoutBotones);
+        lDetalle = (LinearLayout) findViewById(R.id.layoutProductos);
+        lCuenta = (LinearLayout) findViewById(R.id.layoutCuenta);
+        lBotones = (LinearLayout) findViewById(R.id.layoutBotones);
         gridView = (GridView) findViewById(R.id.gridView2);
         gridView2 = (GridView) findViewById(R.id.gridView3);
-        tvCuenta = (TextView)findViewById(R.id.tvCuenta);
+        lvPedidos = (ListView) findViewById(R.id.lvPedidos);
         fm = Principal.familias;
         pr = Principal.productos;
+        listaPedidos = new ArrayList<>();
 
+        adaptadorFamilias = new AdaptadorFamilias(this, R.layout.item_gridlayout, fm);
+        gridView.setAdapter(adaptadorFamilias);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                lDetalle.setVisibility(View.VISIBLE);
+                Familia f = (Familia) parent.getAdapter().getItem(position);
+                auxiliar = new ArrayList<Producto>();
+                for (int j = 0; j < pr.size(); j++) {
+                    if (pr.get(j).getIdFamilia() == f.getIdFamilia()) {
+                        auxiliar.add(pr.get(j));
+                    }
+                }
+                rellenarGridProductos(auxiliar);
+            }
+        });
+        /*
        final String[] familias = new String[fm.size()];
         for (int j = 0; j < fm.size(); j++) {
             familias[j] = fm.get(j).getNombreFamilia();
@@ -69,8 +95,9 @@ public class Comandas extends ActionBarActivity {
         }
         Log.v("productos", ""+productosBucle.length);
 
-
+        */
         /*Gridview para las familias*/
+        /*
         adaptadorGrid = new AdaptadorGridView(this, R.layout.item_gridlayout, getFamilias(productos, familias));
         gridView.setAdapter(adaptadorGrid);
 
@@ -145,23 +172,44 @@ public class Comandas extends ActionBarActivity {
 
             }
         });
-
+        */
         /*Gridview para los productos*/
 
         gridView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 lCuenta.setVisibility(View.VISIBLE);
                 lBotones.setVisibility(View.VISIBLE);
+                Producto p = (Producto) parent.getAdapter().getItem(position);
+                Pedido pedido = new Pedido(p);
+                if (listaPedidos.contains(pedido)) {
+                    int pos = listaPedidos.indexOf(pedido);
+                    listaPedidos.get(pos).sumaCantidad();
+                } else {
+                    listaPedidos.add(new Pedido(p));
+                }
+                for (int j = 0; j < listaPedidos.size(); j++) {
+                    Log.v("pedidos", listaPedidos.get(j).toString());
+                }
 
-                Toast.makeText(Comandas.this, "" + position, Toast.LENGTH_SHORT).show();
+                rellenarListViewPedidos(listaPedidos);
             }
         });
 
     }
 
-    public void rellenarGrid(){
+    public void rellenarGrid() {
         adaptadorGrid = new AdaptadorGridView(Comandas.this, R.layout.item_gridlayout, getFamilias(productos, nombres));
         gridView2.setAdapter(adaptadorGrid);
+    }
+
+    public void rellenarGridProductos(ArrayList<Producto> lista) {
+        adaptadorProductos = new AdaptadorProductos(Comandas.this, R.layout.item_gridlayout, lista);
+        gridView2.setAdapter(adaptadorProductos);
+    }
+
+    public void rellenarListViewPedidos(ArrayList<Pedido> lista) {
+        adaptadorPedido = new AdaptadorPedido(Comandas.this, R.layout.detalle_pedido, lista);
+        lvPedidos.setAdapter(adaptadorPedido);
     }
 
 
@@ -170,7 +218,7 @@ public class Comandas extends ActionBarActivity {
         TypedArray imgs = getResources().obtainTypedArray(productos);
         for (int i = 0; i < imgs.length(); i++) {
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(i, -1));
-            imagenes.add(new ItemImagen(bitmap,  nombres[i]));
+            imagenes.add(new ItemImagen(bitmap, nombres[i]));
         }
         return imagenes;
     }
@@ -178,22 +226,22 @@ public class Comandas extends ActionBarActivity {
 
     /*Array*/
 
- /*   private String[] familias = {
-            "Cafes", "Batidos","Refrescos",
-            "Cervezas","Vinos", "Licores",
-            "Whisky", "Cocktails", "Tapas",
-            "Comida rapida", "Bocadillos", "Ensaladas",
-            "Carnes", "Pescados", "Especiales",
-            "Varios", "Helados",
-    }; */
-
+    /*   private String[] familias = {
+               "Cafes", "Batidos","Refrescos",
+               "Cervezas","Vinos", "Licores",
+               "Whisky", "Cocktails", "Tapas",
+               "Comida rapida", "Bocadillos", "Ensaladas",
+               "Carnes", "Pescados", "Especiales",
+               "Varios", "Helados",
+       }; */
+/*
     private String[] cafes = {
-            "Solo", "Solo Descafeinado","Cortado",
-            "Cortado Descafeinado","Con Leche", "Con Leche Descafeinado",
+            "Solo", "Solo Descafeinado", "Cortado",
+            "Cortado Descafeinado", "Con Leche", "Con Leche Descafeinado",
             "Leche", "Bombon", "Bombon Descafeinado",
             "Carajillo", "Carajillo Descafeinado", "Te",
             "Te con Leche", "Menta Poleo", "Manzanilla",
-            "Tila", "Cola Cao","Belmonte",
+            "Tila", "Cola Cao", "Belmonte",
             "Tewhis", "Americano", "Americano Descafeinado",
             "Capuchino",
     };
@@ -204,12 +252,12 @@ public class Comandas extends ActionBarActivity {
             "Limon", "7up",
             "Swecheps",
     };
-
-    class Pedido extends AsyncTask<String,Void,String> {
+*/
+    class RealizarPedido extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... params) {
-            String url="http://192.168.1.7:8080/ServletRestaurante/peticiones?target="+params[0];
+            String url = "http://192.168.5.24:8080/ServletRestaurante/peticiones?target=" + params[0];
             String r = mandarPedido(url);
             return r;
         }
@@ -218,10 +266,11 @@ public class Comandas extends ActionBarActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             Log.v("respuesta", s.toString());
-            JSONTokener tokenact = new JSONTokener(s.substring(4,s.length()));
+            JSONTokener tokenact = new JSONTokener(s.substring(4, s.length()));
             try {
                 JSONObject obj = new JSONObject(tokenact);
                 Log.v("json", obj.toString());
+                Toast.makeText(Comandas.this, obj.toString(), Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
 
             }
@@ -235,25 +284,25 @@ public class Comandas extends ActionBarActivity {
             } catch (MalformedURLException e) {
                 Log.v("error", e.toString());
             }
-            URLConnection conexion=null;
+            URLConnection conexion = null;
             OutputStreamWriter out = null;
             try {
                 conexion = url.openConnection();
                 conexion.setDoOutput(true);
                 out = new OutputStreamWriter(conexion.getOutputStream());
-                out.write("&datos="+jArray.toString());
+                out.write("&datos=" + jArray.toString());
                 out.flush();
                 out.close();
             } catch (IOException e) {
                 Log.v("error", e.toString());
             }
             BufferedReader in = null;
-            String resultado=null;
+            String resultado = null;
             try {
-                in = new BufferedReader( new InputStreamReader(conexion.getInputStream()));
+                in = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
                 String decodedString;
                 while ((decodedString = in.readLine()) != null) {
-                    resultado+=decodedString+"\n";
+                    resultado += decodedString + "\n";
                 }
                 in.close();
             } catch (IOException e) {
@@ -261,6 +310,29 @@ public class Comandas extends ActionBarActivity {
             }
             return resultado;
         }
+    }
+
+    public void mandarPedido(View v) {
+        RealizarPedido pide = new RealizarPedido();
+        JSONObject pedir = new JSONObject();
+        jArray = new JSONArray();
+        int cont = 0;
+        try {
+            for (int i = 0; i < listaPedidos.size(); i++) {
+                while (listaPedidos.get(i).getCantidad() > cont) {
+                    pedir = new JSONObject();
+                    pedir.put("idMesa", mesaActual);
+                    pedir.put("idProducto", listaPedidos.get(i).getProducto().getIdProducto());
+                    jArray.put(pedir);
+                    cont++;
+                }
+                cont = 0;
+            }
+            Log.v("arraypedido", jArray.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        pide.execute("pedido");
     }
 
 }
