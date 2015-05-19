@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -51,6 +52,7 @@ public class Comandas extends ActionBarActivity {
     private ArrayList<Pedido> listaPedidos;
     private int contador;
     private Button btOcultar;
+    private ImageView separador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class Comandas extends ActionBarActivity {
         gridView2 = (GridView) findViewById(R.id.gridView3);
         lvPedidos = (ListView) findViewById(R.id.lvPedidos);
         btOcultar = (Button)findViewById(R.id.btPedido);
+        separador = (ImageView)findViewById(R.id.ivSeparador);
         fm = Principal.familias;
         pr = Principal.productos;
         listaPedidos = new ArrayList<>();
@@ -79,6 +82,7 @@ public class Comandas extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 lDetalle.setVisibility(View.VISIBLE);
+                separador.setVisibility(View.VISIBLE);
                 Familia f = (Familia) parent.getAdapter().getItem(position);
                 auxiliar = new ArrayList<Producto>();
                 for (int j = 0; j < pr.size(); j++) {
@@ -267,7 +271,7 @@ public class Comandas extends ActionBarActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String url = "http://192.168.5.24:8080/ServletRestaurante/peticiones?target=" + params[0];
+            String url = "http://192.168.1.7:8080/ServletRestaurante/peticiones?target=" + params[0];
             String r = mandarPedido(url);
             return r;
         }

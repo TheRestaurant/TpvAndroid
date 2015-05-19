@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="visible">
+    android:visibility="visible"
+    android:background="@drawable/fondocomanda">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -37,6 +38,13 @@
             android:layout_margin="7dp" />
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:id="@+id/ivSeparador"
+        android:background="@drawable/separador"
+        android:visibility="gone" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -84,6 +92,7 @@
             android:layout_marginBottom="10dp"
             android:visibility="visible"
             android:onClick="mandarPedido" />
+
     </LinearLayout>
 
 </LinearLayout>
