@@ -27,7 +27,7 @@ public class MesaInterior extends Activity implements OnClickListener {
         arrayBotones = new ArrayList<Button>();
 
         for (int i = 0; i < mesas.size(); i++) {
-            if (mesas.get(i).getNombreMesa().contains("Mesa")) {
+            if (mesas.get(i).getZona().contains("Comedor")) {
                 bt = new Button(this);
                 bt.setText(mesas.get(i).getNombreMesa());
                 bt.setHeight(200);

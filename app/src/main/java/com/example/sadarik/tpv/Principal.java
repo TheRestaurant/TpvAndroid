@@ -35,7 +35,7 @@ public class Principal extends FragmentActivity {
 
     private EditText usuario, password;
     private ProgressDialog pDialog;
-    private String baseUrl="http://192.168.1.7:8080/ServletRestaurante/peticiones?target=";
+    private String baseUrl="http://192.168.5.24:8080/ServletRestaurante/peticiones?target=";
     public static ArrayList<Mesa> mesas;
     public static ArrayList<Familia> familias;
     public static ArrayList<Producto> productos;
@@ -92,7 +92,7 @@ public class Principal extends FragmentActivity {
 
         @Override
         protected String doInBackground(String[]... params) {
-            //SystemClock.sleep(1950);
+            SystemClock.sleep(1950);
             String r="";
             for(String[] p:params){
                 r=pedirInfo(p[0],p[1]);
@@ -170,8 +170,8 @@ public class Principal extends FragmentActivity {
             String [] r = new String [params.length];
             int contador =0;
             for(String s:params){
-                //SystemClock.sleep(500);
-                r[contador] = pedirDatos("http://192.168.1.7:8080/ServletRestaurante/peticiones?target="+s);
+                SystemClock.sleep(500);
+                r[contador] = pedirDatos("http://192.168.5.24:8080/ServletRestaurante/peticiones?target="+s);
                 contador++;
             }
             return r;

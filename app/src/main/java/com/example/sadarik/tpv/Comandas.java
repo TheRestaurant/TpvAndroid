@@ -204,10 +204,13 @@ public class Comandas extends ActionBarActivity {
 
     }
 
+    /*
+
     public void rellenarGrid() {
         adaptadorGrid = new AdaptadorGridView(Comandas.this, R.layout.item_gridlayout, getFamilias(productos, nombres));
         gridView2.setAdapter(adaptadorGrid);
     }
+    */
 
     public void rellenarGridProductos(ArrayList<Producto> lista) {
         adaptadorProductos = new AdaptadorProductos(Comandas.this, R.layout.item_gridlayout, lista);
@@ -264,7 +267,7 @@ public class Comandas extends ActionBarActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String url = "http://192.168.1.7:8080/ServletRestaurante/peticiones?target=" + params[0];
+            String url = "http://192.168.5.24:8080/ServletRestaurante/peticiones?target=" + params[0];
             String r = mandarPedido(url);
             return r;
         }
@@ -281,7 +284,7 @@ public class Comandas extends ActionBarActivity {
             } catch (JSONException e) {
 
             }
-
+            finish();
         }
 
         public String mandarPedido(String urlPeticion) {

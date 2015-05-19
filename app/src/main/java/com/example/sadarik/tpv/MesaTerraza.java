@@ -27,7 +27,7 @@ public class MesaTerraza extends Activity implements OnClickListener {
         arrayBotones = new ArrayList<Button>();
 
         for (int i = 0; i < mesas.size(); i++) {
-            if (mesas.get(i).getNombreMesa().contains("Barra")) {
+            if (mesas.get(i).getZona().contains("Terraza")) {
                 bt = new Button(this);
                 bt.setText(mesas.get(i).getNombreMesa());
                 bt.setHeight(200);
