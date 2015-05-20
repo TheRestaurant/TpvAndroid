@@ -12,7 +12,7 @@ public class ContenedorTab extends TabActivity {
 
     	TabHost host = getTabHost();
 
-    	host.addTab(host.newTabSpec("Interior").setIndicator("Interior").setContent(new Intent(this, MesaInterior.class)));
-    	host.addTab(host.newTabSpec("Terraza").setIndicator("Terraza").setContent(new Intent(this, MesaTerraza.class)));
+    	host.addTab(host.newTabSpec(getString(R.string.tab_interior)).setIndicator(getString(R.string.tab_interior)).setContent(new Intent(this, MesaInterior.class)));
+    	host.addTab(host.newTabSpec(getString(R.string.tab_terraza)).setIndicator(getString(R.string.tab_terraza)).setContent(new Intent(this, MesaTerraza.class)));
     }
 }

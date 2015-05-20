@@ -35,8 +35,7 @@ public class Principal extends FragmentActivity {
 
 
     private EditText usuario, password;
-    private ProgressDialog pDialog;
-    private String baseUrl="http://192.168.5.24:8080/ServletRestaurante/peticiones?target=";
+    private String baseUrl="http://192.168.1.7:8080/ServletRestaurante/peticiones?target=";
     public static ArrayList<Mesa> mesas;
     public static ArrayList<Familia> familias;
     public static ArrayList<Producto> productos;
@@ -82,14 +81,7 @@ public class Principal extends FragmentActivity {
 
     class Peticion extends AsyncTask<String[],Integer,String> {
 
-        protected void onPreExecute() {
-            //Progress dialog por si tardara en cargar
-            pDialog = new ProgressDialog(Principal.this);
-            pDialog.setMessage("Autenticando....");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
-        }
+
 
         @Override
         protected String doInBackground(String[]... params) {
@@ -104,7 +96,6 @@ public class Principal extends FragmentActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            pDialog.dismiss();// Se oculta progress dialog
             try {
                 JSONTokener token = new JSONTokener(s.substring(4,s.length()));
                 JSONObject objeto = new JSONObject(token);
@@ -172,7 +163,7 @@ public class Principal extends FragmentActivity {
             int contador =0;
             for(String s:params){
                 SystemClock.sleep(500);
-                r[contador] = pedirDatos("http://192.168.5.24:8080/ServletRestaurante/peticiones?target="+s);
+                r[contador] = pedirDatos("http://192.168.1.7:8080/ServletRestaurante/peticiones?target="+s);
                 contador++;
             }
             return r;
@@ -182,7 +173,7 @@ public class Principal extends FragmentActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             dialog= new ProgressDialog(Principal.this);
-            dialog.setMessage("Cargando Datos");
+            dialog.setMessage(getString(R.string.cargando));
             dialog.setCancelable(false);
             dialog.show();
         }
@@ -245,7 +236,7 @@ public class Principal extends FragmentActivity {
                 for (int i = 0; i < array.length(); i++){
                     JSONObject objeto = array.getJSONObject(i);
                     for (int j = 0; j < imgs.length(); j++) {
-                        if (imgs.getString(j).contains(objeto.getString("nombreProducto").replaceAll(" ", "").toLowerCase().replace(".",""))){
+                        if (imgs.getString(j).contains(objeto.getString("nombreProducto").replaceAll(" ", "").toLowerCase().replace(".", ""))){
                             imagen=imgs.getString(j);
                             break;
                         } else{
@@ -262,7 +253,7 @@ public class Principal extends FragmentActivity {
 
             }
             dialog.dismiss();
-            Intent login = new Intent(getBaseContext(), ContenedorTab.class); //Cambiar a mesas cuando logre meterlo en tab
+            Intent login = new Intent(getBaseContext(), ContenedorTab.class);
             startActivity(login);
         }
 

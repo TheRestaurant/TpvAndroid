@@ -49,7 +49,6 @@ public class MesaTerraza extends Activity implements OnClickListener {
         Intent comanda = new Intent(this, Comandas.class);
         comanda.putExtra("mesa",botonSeleccionado.getId());
         startActivity(comanda);
-        Toast.makeText(this, botonSeleccionado.getId()+ " Presionado", Toast.LENGTH_SHORT).show();
     }
 }
 

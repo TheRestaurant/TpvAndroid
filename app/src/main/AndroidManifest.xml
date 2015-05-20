@@ -10,8 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".Principal"
-            android:label="@string/app_name" >
+            android:name=".Principal" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,20 +18,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MesaInterior"
-            android:label="Interior" >
+            android:name=".MesaInterior">
         </activity>
         <activity
-            android:name=".MesaTerraza"
-            android:label="Terraza" >
+            android:name=".MesaTerraza">
         </activity>
         <activity
-            android:name=".Comandas"
-            android:label="@string/title_activity_comandas" >
+            android:name=".Comandas" >
         </activity>
           <activity
-             android:name=".ContenedorTab"
-             android:label="container" >
+             android:name=".ContenedorTab">
          </activity>
      </application>
 
