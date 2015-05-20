@@ -28,6 +28,7 @@ import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.Normalizer;
 import java.util.ArrayList;
 
 public class Principal extends FragmentActivity {
@@ -35,7 +36,7 @@ public class Principal extends FragmentActivity {
 
     private EditText usuario, password;
     private ProgressDialog pDialog;
-    private String baseUrl="http://192.168.1.7:8080/ServletRestaurante/peticiones?target=";
+    private String baseUrl="http://192.168.5.24:8080/ServletRestaurante/peticiones?target=";
     public static ArrayList<Mesa> mesas;
     public static ArrayList<Familia> familias;
     public static ArrayList<Producto> productos;
@@ -171,7 +172,7 @@ public class Principal extends FragmentActivity {
             int contador =0;
             for(String s:params){
                 SystemClock.sleep(500);
-                r[contador] = pedirDatos("http://192.168.1.7:8080/ServletRestaurante/peticiones?target="+s);
+                r[contador] = pedirDatos("http://192.168.5.24:8080/ServletRestaurante/peticiones?target="+s);
                 contador++;
             }
             return r;
@@ -213,8 +214,11 @@ public class Principal extends FragmentActivity {
                 String imagen = null;
                 for (int i = 0; i < array.length(); i++){
                     JSONObject objeto = array.getJSONObject(i);
+                    String busca = objeto.getString("nombreFamilia").replaceAll(" ","").toLowerCase();
+                    busca = Normalizer.normalize(busca, Normalizer.Form.NFD);
+                    busca = busca.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
                     for (int j = 0; j < imgs.length(); j++) {
-                       if(imgs.getString(j).contains(objeto.getString("nombreFamilia").toLowerCase())){
+                       if(imgs.getString(j).contains(busca)){
                            imagen=imgs.getString(j);
                            break;
                         } else{
@@ -231,7 +235,7 @@ public class Principal extends FragmentActivity {
 
             }
 
-            imgs = getResources().obtainTypedArray(R.array.refrescos);
+            imgs = getResources().obtainTypedArray(R.array.productos);
 
             JSONTokener tokenproductos = new JSONTokener(strings[2].substring(4, strings[2].length()));
             productos = new ArrayList<>();
@@ -241,7 +245,7 @@ public class Principal extends FragmentActivity {
                 for (int i = 0; i < array.length(); i++){
                     JSONObject objeto = array.getJSONObject(i);
                     for (int j = 0; j < imgs.length(); j++) {
-                        if(imgs.getString(j).contains(objeto.getString("nombreProducto").replaceAll(" ", "").toLowerCase())){
+                        if (imgs.getString(j).contains(objeto.getString("nombreProducto").replaceAll(" ", "").toLowerCase().replace(".",""))){
                             imagen=imgs.getString(j);
                             break;
                         } else{

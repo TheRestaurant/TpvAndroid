@@ -7,23 +7,24 @@
     <string name="title_activity_comandas">Comandas</string>
 
     <string-array name="familias">
-        <item>@drawable/fcafeseinfusiones</item> --
-        <item>@drawable/fbatidos</item> --
-        <item>@drawable/frefrescos</item> --
-        <item>@drawable/fcervezas</item> --
-        <item>@drawable/fvinos</item> --
-        <item>@drawable/flicores</item> --
-        <item>@drawable/fbebidas</item>
-        <item>@drawable/fcocktails</item> --
-        <item>@drawable/ftapas</item> --
-        <item>@drawable/frapida</item>
-        <item>@drawable/fbocadillos</item> --
-        <item>@drawable/fensaladas</item> --
-        <item>@drawable/fcarnes</item> --
-        <item>@drawable/fpescados</item> --
-        <item>@drawable/fespeciales</item> --
-        <item>@drawable/fvarios</item> --
-        <item>@drawable/fhelados</item> --
+        <item>@drawable/cafeseinfusiones</item>
+        <item>@drawable/frefrescos</item>
+        <item>@drawable/fcervezas</item>
+        <item>@drawable/fvinos</item>
+        <item>@drawable/flicores</item>
+        <item>@drawable/bebidasalcoholicas</item>
+        <item>@drawable/entrantes</item>
+        <item>@drawable/fcarnes</item>
+        <item>@drawable/fespeciales</item>
+        <item>@drawable/fvarios</item>
+        <item>@drawable/huevosytortillas</item>
+        <item>@drawable/postres</item>
+        <item>@drawable/paellas</item>
+        <item>@drawable/desayunos</item>
+        <item>@drawable/pescadomotril</item>
+        <item>@drawable/pescadogaliciacantabrico</item>
+        <item>@drawable/sopas</item>
+        <item>@drawable/tapas</item>
     </string-array>
 
     <string-array name="cafes">
@@ -51,14 +52,35 @@
         <item>@drawable/nofoto</item>
     </string-array>
 
-    <string-array name="refrescos">
+    <string-array name="productos">
         <item>@drawable/cocacola</item>
         <item>@drawable/cocacolalight</item>
         <item>@drawable/cocacolazero</item>
         <item>@drawable/fantanaranja</item>
         <item>@drawable/fantalimon</item>
         <item>@drawable/sevenup</item>
-        <item>@drawable/schweppes</item>
+        <item>@drawable/tonicaschweppes</item>
+        <item>@drawable/nestea</item>
+        <item>@drawable/aguagrande</item>
+        <item>@drawable/bitterkas</item>
+        <item>@drawable/redbull</item>
+        <item>@drawable/zumomelocoton</item>
+        <item>@drawable/ztomate</item>
+        <item>@drawable/znaranja</item>
+        <item>@drawable/casera</item>
+        <item>@drawable/anaranja</item>
+        <item>@drawable/tubo</item>
+        <item>@drawable/shandy</item>
+        <item>@drawable/solo</item>
+        <item>@drawable/solodescafeinado</item>
+        <item>@drawable/cortado</item>
+        <item>@drawable/cortadodescafeinado</item>
+        <item>@drawable/conleche</item>
+        <item>@drawable/conlechedescafeinado</item>
+        <item>@drawable/mentapoleo</item>
+        <item>@drawable/manzanilla</item>
+        <item>@drawable/tila</item>
+        <item>@drawable/colacao</item>
     </string-array>
 
 </resources>

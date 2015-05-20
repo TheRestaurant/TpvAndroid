@@ -38,14 +38,11 @@ public class Comandas extends ActionBarActivity {
     private LinearLayout lFamilias, lDetalle, lCuenta, lBotones;
     private GridView gridView, gridView2;
     private ListView lvPedidos;
-    private AdaptadorGridView adaptadorGrid;
     private AdaptadorFamilias adaptadorFamilias;
     private AdaptadorProductos adaptadorProductos;
     private AdaptadorPedido adaptadorPedido;
     private int mesaActual;
     private JSONArray jArray;
-    private int productos = R.array.familias;
-    private String[] nombres;
     private ArrayList<Familia> fm;
     private ArrayList<Producto> pr;
     private ArrayList<Producto> auxiliar;
@@ -93,97 +90,7 @@ public class Comandas extends ActionBarActivity {
                 rellenarGridProductos(auxiliar);
             }
         });
-        /*
-       final String[] familias = new String[fm.size()];
-        for (int j = 0; j < fm.size(); j++) {
-            familias[j] = fm.get(j).getNombreFamilia();
 
-        }
-
-        final String[] productosBucle = new String[pr.size()];
-        for (int j = 0; j < pr.size(); j++) {
-            productosBucle[j] = pr.get(j).getNombreProducto();
-        }
-        Log.v("productos", ""+productosBucle.length);
-
-        */
-        /*Gridview para las familias*/
-        /*
-        adaptadorGrid = new AdaptadorGridView(this, R.layout.item_gridlayout, getFamilias(productos, familias));
-        gridView.setAdapter(adaptadorGrid);
-
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                lDetalle.setVisibility(View.VISIBLE);
-                switch (position) {
-
-                    case 0:
-                        productos = R.array.cafes;
-                        nombres = cafes;
-                        rellenarGrid();
-                        break;
-                    case 1:
-                        productos = R.array.familias;
-                        nombres = familias;
-                        rellenarGrid();
-                        break;
-                    case 2:
-                        productos = R.array.refrescos;
-                        nombres = refrescos;
-                        rellenarGrid();
-                        break;
-                    case 3:
-                        Toast.makeText(Comandas.this, "cervezas", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 4:
-
-                        Toast.makeText(Comandas.this, "vinos", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 5:
-                        Toast.makeText(Comandas.this, "licores", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 6:
-                        Toast.makeText(Comandas.this, "whisky", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 7:
-                        Toast.makeText(Comandas.this, "cocktails", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 8:
-                        Toast.makeText(Comandas.this, "tapas", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 9:
-                        Toast.makeText(Comandas.this, "comida rapida", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 10:
-                        Toast.makeText(Comandas.this, "bocadillos", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 11:
-                        Toast.makeText(Comandas.this, "ensaladas", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 12:
-                        Toast.makeText(Comandas.this, "carnes", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 13:
-                        Toast.makeText(Comandas.this, "pescados", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 14:
-                        Toast.makeText(Comandas.this, "especiales", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 15:
-                        Toast.makeText(Comandas.this, "varios", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 16:
-                        Toast.makeText(Comandas.this, "helados", Toast.LENGTH_SHORT).show();
-                        break;
-
-                    default:
-                        break;
-                }
-
-            }
-        });
-        */
         /*Gridview para los productos*/
 
         gridView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -201,20 +108,12 @@ public class Comandas extends ActionBarActivity {
                 for (int j = 0; j < listaPedidos.size(); j++) {
                     Log.v("pedidos", listaPedidos.get(j).toString());
                 }
-
                 rellenarListViewPedidos(listaPedidos);
             }
         });
 
     }
 
-    /*
-
-    public void rellenarGrid() {
-        adaptadorGrid = new AdaptadorGridView(Comandas.this, R.layout.item_gridlayout, getFamilias(productos, nombres));
-        gridView2.setAdapter(adaptadorGrid);
-    }
-    */
 
     public void rellenarGridProductos(ArrayList<Producto> lista) {
         adaptadorProductos = new AdaptadorProductos(Comandas.this, R.layout.item_gridlayout, lista);
@@ -227,51 +126,11 @@ public class Comandas extends ActionBarActivity {
     }
 
 
-    private ArrayList<ItemImagen> getFamilias(int productos, String[] nombres) {
-        final ArrayList<ItemImagen> imagenes = new ArrayList<>();
-        TypedArray imgs = getResources().obtainTypedArray(productos);
-        for (int i = 0; i < imgs.length(); i++) {
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(i, -1));
-            imagenes.add(new ItemImagen(bitmap, nombres[i]));
-        }
-        return imagenes;
-    }
-
-
-    /*Array*/
-
-    /*   private String[] familias = {
-               "Cafes", "Batidos","Refrescos",
-               "Cervezas","Vinos", "Licores",
-               "Whisky", "Cocktails", "Tapas",
-               "Comida rapida", "Bocadillos", "Ensaladas",
-               "Carnes", "Pescados", "Especiales",
-               "Varios", "Helados",
-       }; */
-/*
-    private String[] cafes = {
-            "Solo", "Solo Descafeinado", "Cortado",
-            "Cortado Descafeinado", "Con Leche", "Con Leche Descafeinado",
-            "Leche", "Bombon", "Bombon Descafeinado",
-            "Carajillo", "Carajillo Descafeinado", "Te",
-            "Te con Leche", "Menta Poleo", "Manzanilla",
-            "Tila", "Cola Cao", "Belmonte",
-            "Tewhis", "Americano", "Americano Descafeinado",
-            "Capuchino",
-    };
-
-    private String[] refrescos = {
-            "Coca Cola", "Light",
-            "Zero", "Naranja",
-            "Limon", "7up",
-            "Swecheps",
-    };
-*/
     class RealizarPedido extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... params) {
-            String url = "http://192.168.1.7:8080/ServletRestaurante/peticiones?target=" + params[0];
+            String url = "http://192.168.5.24:8080/ServletRestaurante/peticiones?target=" + params[0];
             String r = mandarPedido(url);
             return r;
         }
