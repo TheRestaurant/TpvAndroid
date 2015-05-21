@@ -130,7 +130,7 @@ public class Comandas extends ActionBarActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String url = "http://192.168.1.7:8080/ServletRestaurante/peticiones?target=" + params[0];
+            String url = "http://192.168.5.24:8080/ServletRestaurante/peticiones?target=" + params[0];
             String r = mandarPedido(url);
             return r;
         }

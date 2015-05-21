@@ -3,6 +3,7 @@ package com.example.sadarik.tpv;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,8 +51,16 @@ public class AdaptadorProductos extends ArrayAdapter<Producto> {
         holder.tituloImagen.setText(item.getNombreProducto());
 
         int id = getContext().getResources().getIdentifier(item.getImagen(), "drawable", getContext().getPackageName());
-        Drawable drawable = getContext().getResources().getDrawable(id);
-        holder.imagen.setImageDrawable(drawable);
+        if(id!=0 && id!=1925){
+            Drawable drawable = getContext().getResources().getDrawable(id);
+            holder.imagen.setImageDrawable(drawable);
+        }else{
+            Drawable drawable = getContext().getResources().getDrawable(R.drawable.nofoto);
+            holder.imagen.setImageDrawable(drawable);
+        }
+
+
+
 
         return row;
     }

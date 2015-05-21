@@ -34,60 +34,6 @@
         <item>@drawable/tapas</item>
     </string-array>
 
-    <string-array name="cafes">
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-        <item>@drawable/nofoto</item>
-    </string-array>
 
-    <string-array name="productos">
-        <item>@drawable/cocacola</item>
-        <item>@drawable/cocacolalight</item>
-        <item>@drawable/cocacolazero</item>
-        <item>@drawable/fantanaranja</item>
-        <item>@drawable/fantalimon</item>
-        <item>@drawable/sevenup</item>
-        <item>@drawable/tonicaschweppes</item>
-        <item>@drawable/nestea</item>
-        <item>@drawable/aguagrande</item>
-        <item>@drawable/bitterkas</item>
-        <item>@drawable/redbull</item>
-        <item>@drawable/zumomelocoton</item>
-        <item>@drawable/ztomate</item>
-        <item>@drawable/znaranja</item>
-        <item>@drawable/casera</item>
-        <item>@drawable/anaranja</item>
-        <item>@drawable/tubo</item>
-        <item>@drawable/shandy</item>
-        <item>@drawable/solo</item>
-        <item>@drawable/solodescafeinado</item>
-        <item>@drawable/cortado</item>
-        <item>@drawable/cortadodescafeinado</item>
-        <item>@drawable/conleche</item>
-        <item>@drawable/conlechedescafeinado</item>
-        <item>@drawable/mentapoleo</item>
-        <item>@drawable/manzanilla</item>
-        <item>@drawable/tila</item>
-        <item>@drawable/colacao</item>
-    </string-array>
 
 </resources>
