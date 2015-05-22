@@ -105,9 +105,7 @@ public class Comandas extends ActionBarActivity {
                 } else {
                     listaPedidos.add(new Pedido(p));
                 }
-                for (int j = 0; j < listaPedidos.size(); j++) {
-                    Log.v("pedidos", listaPedidos.get(j).toString());
-                }
+
                 rellenarListViewPedidos(listaPedidos);
             }
         });
@@ -130,7 +128,7 @@ public class Comandas extends ActionBarActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String url = "http://192.168.1.7:8080/ServletRestaurante/peticiones?target=" + params[0];
+            String url = "http://192.168.5.24:8080/ServletRestaurante/peticiones?target=" + params[0];
             String r = mandarPedido(url);
             return r;
         }
@@ -142,8 +140,7 @@ public class Comandas extends ActionBarActivity {
             JSONTokener tokenact = new JSONTokener(s.substring(4, s.length()));
             try {
                 JSONObject obj = new JSONObject(tokenact);
-                Log.v("json", obj.toString());
-                Toast.makeText(Comandas.this, obj.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Comandas.this, obj.getString("r"), Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
 
             }
@@ -187,7 +184,7 @@ public class Comandas extends ActionBarActivity {
 
     public void mandarPedido(View v) {
         RealizarPedido pide = new RealizarPedido();
-        JSONObject pedir = new JSONObject();
+        JSONObject pedir;
         jArray = new JSONArray();
         int cont = 0;
         try {
