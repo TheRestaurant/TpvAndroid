@@ -48,6 +48,8 @@ public class MesaInterior extends Activity implements OnClickListener {
         Button botonSeleccionado = (Button) v;
         Intent comanda = new Intent(this, Comandas.class);
         comanda.putExtra("mesa",botonSeleccionado.getId());
+        comanda.putExtra("nombreMesa",botonSeleccionado.getText());
+        comanda.putExtra("zona", "Interior");
         startActivity(comanda);
     }
 }

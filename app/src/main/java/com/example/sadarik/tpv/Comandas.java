@@ -71,7 +71,7 @@ public class Comandas extends ActionBarActivity {
         fm = Principal.familias;
         pr = Principal.productos;
         listaPedidos = new ArrayList<>();
-
+        setTitle(i.getStringExtra("nombreMesa") +" - "+ i.getStringExtra("zona"));
         adaptadorFamilias = new AdaptadorFamilias(this, R.layout.item_gridlayout, fm);
         gridView.setAdapter(adaptadorFamilias);
 
