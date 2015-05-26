@@ -59,9 +59,6 @@ public class AdaptadorProductos extends ArrayAdapter<Producto> {
             holder.imagen.setImageDrawable(drawable);
         }
 
-
-
-
         return row;
     }
 
