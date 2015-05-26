@@ -48,7 +48,7 @@ public class AdaptadorPedido extends ArrayAdapter<Pedido> {
         final Pedido item = lista.get(position);
         holder.tvNombreProducto.setText(item.getProducto().getNombreProducto());
         holder.tvCantidad.setText(item.getCantidad()+"");
-        holder.tvPrecio.setText(item.getProducto().getPrecio()+"");
+        holder.tvPrecio.setText(item.getProducto().getPrecio()*item.getCantidad()+"");
         holder.btBorrar.setTag(position);
         holder.btBorrar.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -55,7 +55,7 @@ public class Comandas extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actividad_comandas);
-         contador=0;
+        contador=0;
         Intent i = getIntent();
         mesaActual = i.getIntExtra("mesa", -1);
         Log.v("mesa", mesaActual + "");
@@ -105,7 +105,6 @@ public class Comandas extends ActionBarActivity {
                 } else {
                     listaPedidos.add(new Pedido(p));
                 }
-
                 rellenarListViewPedidos(listaPedidos);
             }
         });
